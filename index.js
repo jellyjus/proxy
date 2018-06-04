@@ -1,5 +1,6 @@
 const http = require('http');
 const https = require('https');
+const express = require('express');
 const httpProxy = require('http-proxy');
 const fs = require('fs');
 
@@ -37,6 +38,19 @@ const HttpsProxy = () => {
     server.listen(port, '0.0.0.0');
 };
 
+const Verify = () => {
+    const app = express();
+    app.use(express.static('static'));
+
+    const port = process.env.PORT || 443;
+    const server = http.createServer(app);
+    server.listen(port, '0.0.0.0', () => {
+        console.log(`Start listening on localhost:${port}`)
+    });
+};
+
+const VERIFY = +process.env.VERIFY;
 const SSL = +process.env.SSL;
 
+VERIFY? Verify() : null;
 SSL? HttpsProxy() : HttpProxy();
