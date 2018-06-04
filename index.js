@@ -17,7 +17,7 @@ const HttpProxy = () => {
 };
 
 const HttpsProxy = () => {
-    const port = 8443;
+    const port = +process.env.PORT || 8443;
     const options = {
         key: fs.readFileSync('key.pem'),
         cert: fs.readFileSync('certificate.pem')

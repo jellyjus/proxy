@@ -1,2 +1,0 @@
-run:
-  web: SSL=1 node index.js
