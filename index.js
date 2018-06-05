@@ -25,7 +25,7 @@ const HttpsProxy = () => {
     };
     const proxy = httpProxy.createServer({
         ssl: options,
-        secure: false
+        secure: true
     });
 
     const server = https.createServer(options, (req, res) => {
